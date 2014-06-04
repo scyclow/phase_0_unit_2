@@ -20,7 +20,13 @@
 
 # 2. Initial Solution
 
-
+def median(array)
+	unless array.length % 2 == 0
+		array.sort[array.length/2]
+	else
+		(array.sort[array.length/2]+array.sort[(array.length/2)+1])/2.0
+	end
+end
 
 
 # 3. Refactored Solution
