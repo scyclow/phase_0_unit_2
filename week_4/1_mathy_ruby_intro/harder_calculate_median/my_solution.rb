@@ -8,10 +8,15 @@
 
 # 1. Pseudocode
 
-# What is the input?
-# What is the output? (i.e. What should the code return?)
-# What are the steps needed to solve the problem?
-
+# define a method called 'median' with one parameter...array
+	# sort the array
+	# find the length of the array
+	# if the length is an odd number:
+		# divide the length by 2, and round up
+		# return the element at this place in the array
+	# else
+		#divide the array's length by 2
+		#return the average of the element in this place, and the element in the next place
 
 # 2. Initial Solution
 
