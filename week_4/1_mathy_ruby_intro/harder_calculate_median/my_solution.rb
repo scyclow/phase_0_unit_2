@@ -33,12 +33,13 @@ end
 def median(array)
 	array.sort!
 	mid = array.length/2
-	if array.length.odd?
-		array[mid]
-	else
-		(array[mid]+array[mid-1])/2.0
-	end
+	array.length.odd? ? array[mid] : (array[mid]+array[mid-1])/2.0 
 end
 
 
 # 4. Reflection 
+# This wasn't very hard overall. I found myself thinking about the solution faster than I could pseudocode. Then I found myself thinking about refactoring while I was writing the initial solution.
+# Originally I refactored the solution such that it took up more lines of code, but was clearer. Then I refactored to it's current form.
+# I'm not sure if this is clearer than the original refactor, but it's much shorter. I could probably fit it into one line, but then it would be unreadable:
+# array.size.odd? ? array.sort![array.size/2] : (array[array.size/2]+array[(array.size/2)-1])/2.0 
+# 
