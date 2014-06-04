@@ -4,13 +4,16 @@
 # include it in this file. Also make sure everything that isn't code
 # is commented in the file.  
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge [by myself ].
 
 # 1. Pseudocode
 
-# What is the input?
-# What is the output? (i.e. What should the code return?)
-# What are the steps needed to solve the problem?
+#define a function called 'mode' that accepts the parameter 'array'
+	# create a new hash with a default value of 0
+	# iterate through array
+		# for each item, add 1 to hash[item]
+	# sort the hash by values
+	# return a list of the keys with the same value as the last value
 
 
 # 2. Initial Solution
