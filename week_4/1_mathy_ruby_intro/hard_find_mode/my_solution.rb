@@ -35,3 +35,10 @@ end
 
 
 # 4. Reflection 
+# I remember doing the hash.new(0) method to count things from a codecademy exercise, so I can't take total credit for that. 
+# I had some trouble with the third line of the function...writing it initially and refactoring it. Originally I tried sorting the hash, and then add the value of the last item to a seperate array. but this was problematic.
+# After some research, I figured that I could just use the select method instead of creating a seperate array. And after looking to some hash methods, I realized I could pull out the keys from the select method.
+# It neve occured to me to refactor the first part, which creates the hash. But I saw someone else use the inject method to the effect of:
+	# entries = array.inject(Hash.new(0)) {|hash, key| hash[key] += 1}
+
+# In all, I figured most of this out by browsing the Hash document with an idea of methods that work on arrays.
