@@ -30,7 +30,7 @@ end
 def mode(array)
 	entries = Hash.new(0)
 	array.each {|key| entries[key] += 1}
-	entries.select {|key, value| value == entries.max}.keys
+	entries.select {|key, value| value == entries.values.max}.keys
 end
 
 
