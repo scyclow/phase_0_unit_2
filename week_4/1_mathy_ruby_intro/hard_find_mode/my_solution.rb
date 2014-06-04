@@ -27,6 +27,11 @@ end
 
 # 3. Refactored Solution
 
+def mode(array)
+	entries = Hash.new(0)
+	array.each {|key| entries[key] += 1}
+	entries.select {|key, value| value == entries.max}.keys
+end
 
 
 # 4. Reflection 
