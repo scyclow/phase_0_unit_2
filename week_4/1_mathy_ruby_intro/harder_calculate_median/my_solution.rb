@@ -30,7 +30,15 @@ end
 
 
 # 3. Refactored Solution
-
+def median(array)
+	array.sort!
+	mid = array.length/2
+	if array.length.odd?
+		array[mid]
+	else
+		(array[mid]+array[mid-1])/2.0
+	end
+end
 
 
 # 4. Reflection 
