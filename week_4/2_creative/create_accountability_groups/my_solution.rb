@@ -34,13 +34,87 @@
 
 
 # 3. Initial Solution
+=begin
+def accountable(student_list)
+    student_list.shuffle!
+    
+    units = {
+       1 => [],
+       2 => [],
+       3 => []
+    }
+    
+    #splits groups into units of fours, adds to first unit
+    student_list.each_slice(4) {|group| units[1] << group}
+    
+    # adds students in any group smaller than 4 to other groups
+    if units[1][-1].size < 4
+        units[1][-1].each_index do |index| 
+            units[1][index] << units[1][-1][index]
+        end
+        #I can't figure out how to drop the last array
+        units[1] = units[1][0...-1]
+    end
+    
+    #create new arra
+    units[2] = Array.new(units[1].size) {[]}
+    units[1].each_with_index do |group, group_i|
+        group.each_with_index do |student, student_i|
+            if group_i+student_i < units[1].size
+                target_group = group_i+student_i
+            else
+                target_group = (group_i+student_i)-units[1].size
+            end
+            units[2][target_group] << student
+        end
+    end
 
+    units[3] = Array.new(units[1].size) {[]}
+    units[1].each_with_index do |group, group_i|
+    	group.each_with_index do |student, student_i|
+    		target_group = group_i - student_i
+    		units[3][target_group] << student
+    	end
+    end
 
+    units
+end
+
+=end
 
 
 # 4. Refactored Solution
 
+def accountable(student_list)
+    units = {1 => []}
 
+    student_list.shuffle!
+    student_list.each_slice(4) {|group| units[1] << group}
+    if units[1].last.size < 4
+        units[1].last.each_index do |index| 
+            units[1][index] << units[1].last[index]
+        end.delete_at(-1)
+    end
+    num_groups = units[1].size
+
+    units[2] = Array.new(num_groups) {[]}
+    units[1].each_with_index do |group, g_ix|
+        group.each_with_index do |student, s_ix|
+            target_group = (g_ix+s_ix < num_groups) ? g_ix+s_ix : g_ix+s_ix-num_groups
+            units[2][target_group] << student
+        end
+    end
+
+    units[3] = Array.new(num_groups) {[]}
+    units[1].each_with_index do |group, g_ix|
+    	group.each_with_index do |student, s_ix|
+    		target_group = g_ix - s_ix
+    		units[3][target_group] << student
+    	end
+    end
+
+    units
+end
 
 
 
@@ -49,8 +123,48 @@
 
 # 1. DRIVER TESTS GO BELOW THIS LINE
 
+student_list = %w{
+Dakota Cousineau
+Casey Ryan
+Clayton Jordan
+William Davis
+David Nanry
+Dev Deol
+Duke Greene
+Edgar Garza
+Stephanie Chou
+Joey Sabani
+Joseph Hendele
+Kajal Agarwal
+Krystyna Ewing
+Grace Yim
+Jeff Keslin
+Jennie Chamberlin
+Joey Chamberlin
+Lovinder Pnag
+Maria Magdalena 
+Ang Bejar
+Michael Daugherty
+Michael Kirlin
+Robert Schwartz
+Sebastian Caso
+Sebastian Radloff
+Steven Pikelny
+Neel Shah
+}.each_slice(2).map{|student| "#{student[0]} #{student[1]}"}
 
+units = accountable(student_list)
 
+units.size == 3
+
+units.each {|unit| unit.flatten.size == student_list.size}
+
+units[1].each {|group| group.size <=5 && group.size > 3}
+units[2].each {|group| group.size <=5 && group.size > 3}
+units[3].each {|group| group.size <=5 && group.size > 3}
+
+#I forgot to write the driver code before the solition. sorry.
+# I can't figure out how to test to make sure that students are in different groups each time
 
 
 
