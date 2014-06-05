@@ -36,12 +36,20 @@ def accountable(student_list)
         units[1] = units[1][0...-1]
     end
     
-    units[1][0]
-    
-    units[1].flatten.each_index do |index|
+    #create new arra
+    units[2] = Array.new(units[1].size) {[]}
+    units[1].each_with_index do |group, group_i|
+        group.each_with_index do |student, student_i|
+            if group_i+student_i < units[1].size
+                target_group = group_i+student_i
+            else
+                target_group = (group_i+student_i)-units[1].size
+            end
+            units[2][target_group] << student
+        end
         
     end
-    units[2]
+    units
 end
 
 

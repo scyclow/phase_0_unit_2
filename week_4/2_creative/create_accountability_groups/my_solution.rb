@@ -100,7 +100,7 @@ def accountable(student_list)
     units[2] = Array.new(num_groups) {[]}
     units[1].each_with_index do |group, g_ix|
         group.each_with_index do |student, s_ix|
-            target_group = (g_ix+s_ix < num_groups) ? g_ix+s_ix : g_ix+s_ix-num_groups
+            target_group = (g_ix + s_ix < num_groups) ? (g_ix + s_ix) : (g_ix + s_ix - num_groups)
             units[2][target_group] << student
         end
     end
@@ -164,11 +164,17 @@ units[2].each {|group| group.size <=5 && group.size > 3}
 units[3].each {|group| group.size <=5 && group.size > 3}
 
 #I forgot to write the driver code before the solition. sorry.
-# I can't figure out how to test to make sure that students are in different groups each time
+#I can't figure out how to test to make sure that students are in different groups each time
 
 
 
 # 5. Reflection 
 
 # I originally wrote some pseudocode for this exercise, and ended up scrapping a lot of the ideas. So, I ended up writing the pseudocode here after coding for a while and formulating a better game plane.
-# 
+# It took me a long time to figure out a good algorithm for mixing the groups up such that no student is in the same group with any other students twice. I spent some time thinking about this in my office, and tried to visualize it by making a grid with business cards and moving them around.
+# I actually had an easier time figuring out the best algorithm once I started typing code. It's surprisingl hard to pseudocode. Pseudocode is vague by definition, which makes it hard to keep track of all the variables.
+# When working on the initial solution, I ran into a major problem in the syntax for unit 2, which took several hours of debugging. I paired with Michael Kirlin for nearly two hours, and neither of us could figure out what was going wrong. 
+# Eventually, I figured out that I made a syntactical error when setting up empty arrays for unit 2. Apparently, []*X creates the SAME array X times, rather than X different arrays. 
+# In all, I think explaining the problem to someone else helped me clarify my thinking on the matter.
+# I also had some trouble with the driver tests. I don't know how to test whether there is any group overlap without taking an object oriented approach.
+
