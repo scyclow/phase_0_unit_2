@@ -22,7 +22,7 @@
 
 
 # 2. Initial Solution
-def seperate_comma(input)
+def separate_comma(input)
 	string = input.to_s
 	inc=0
 	(string.length-1).downto(0) {|i| unless inc==2 then inc+=1 else string.insert(i,','); inc=0 end}
@@ -37,12 +37,13 @@ end
 
 
 
+
 # 4. Reflection 
 # It really annoys me that ruby does not have a way of iterating through an iterable in steps. I originally tried to iterate in steps using a range to reference the index of the input, but ranges don't go backward.
 
 #0. Driver Test
-seperate_comma(10000000) == '10,000,000'
-seperate_comma(1000000) == '1,000,000'
-seperate_comma(100000) == '100,000'
-seperate_comma(10000) == '10,000'
-seperate_comma(100) == '100'
+separate_comma(10000000) == '10,000,000'
+separate_comma(1000000) == '1,000,000'
+separate_comma(100000) == '100,000'
+separate_comma(10000) == '10,000'
+separate_comma(100) == '100'
