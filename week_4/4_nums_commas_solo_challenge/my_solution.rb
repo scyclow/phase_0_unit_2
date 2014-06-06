@@ -7,9 +7,18 @@
 
 # 1. Pseudocode
 
-# What is the input?
+# What is the input? 
+	# a number containing several digits.
 # What is the output? (i.e. What should the code return?)
+	#a string, seperating the input number with commas
 # What are the steps needed to solve the problem?
+
+#define a function called seperate_comma
+	#turn the input into a string
+	#step through the input backwards 
+	# every three digits, insert a comma
+	#return the string
+
 
 
 # 2. Initial Solution
@@ -22,3 +31,4 @@
 
 
 # 4. Reflection 
+# It really annoys me that ruby does not have a way of iterating through an iterable in steps. I originally tried to iterate in steps using a range to reference the index of the input, but ranges don't go backward.
