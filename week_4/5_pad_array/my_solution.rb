@@ -21,7 +21,19 @@
 
 
 # 2. Initial Solution
-
+class Array
+	def pad(times, with=nil)
+		new_array = Array.new(self)
+		return new_array if times <= self.length
+		(times-self.length).times {new_array << with}
+		new_array
+	end
+	def pad!(times, with=nil)
+		return self if times <= self.length
+		times.times {self << with}
+		self
+	end
+end
 
 
 
@@ -30,3 +42,4 @@
 
 
 # 4. Reflection 
+# the original solution came to me pretty quickly here, but I messed up by not reading the directions. I thought that pad was supposed to add the specified number of padding to the array.
