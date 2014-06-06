@@ -43,11 +43,11 @@ Initial
 # 3. Refactored Solution
 class Array
 	def pad(places, with=nil)
-		return self+Array.new(places-self.length, with) unless places<=self.length
+		return self + Array.new(places - self.length, with) unless places <= self.length
 		Array.new(self)
 	end
 	def pad!(places, with=nil)
-		(places-self.length).times {self << with} 
+		(places - self.length).times {self << with} 
 		self
 	end
 end
@@ -55,3 +55,7 @@ end
 
 # 4. Reflection 
 # the original solution came to me pretty quickly here, but I messed up by not reading the directions. I thought that pad was supposed to add the specified number of padding to the array.
+# I also ran into a bit of trouble refactoring the destructive padding method. My original refactor returned a different array. Thankfully the #object_id method helped a lot when playing around in irb.
+# At some point, the destructive method said: "self << Array.new(places-self.length, with)", which yielded a result of [....[...]] instead of [.......]. For some reason, this passed the rspec test.
+# I also learned a lot by reading the rspec code directly. That's where I got the idea for self + Array.new(...)
+# In all, the actual solution wasn't super hard (once I read the directions), but I'm definitely learning a lot about TDD, and beginning to see its merits.
