@@ -21,6 +21,8 @@
 
 
 # 2. Initial Solution
+<<-Initial
+
 class Array
 	def pad(times, with=nil)
 		new_array = Array.new(self)
@@ -35,10 +37,20 @@ class Array
 	end
 end
 
+Initial
 
 
 # 3. Refactored Solution
-
+class Array
+	def pad(places, with=nil)
+		return self+Array.new(places-self.length, with) unless places<=self.length
+		Array.new(self)
+	end
+	def pad!(places, with=nil)
+		(places-self.length).times {self << with} 
+		self
+	end
+end
 
 
 # 4. Reflection 
