@@ -57,6 +57,16 @@ end
 # 4. Reflection 
 # It really annoys me that ruby does not have a way of iterating in steps. I originally tried to iterate in steps using a range, referencing the index of the input, but ranges can't go backward. So, I came up with this stupid idea.
 # In all, this is a pretty straight forward exercise. But, this is the first time I'm really dissapointed with ruby's library. It is sorely lacking a function to step through an iterable. Range#step doesn't cut it.
+# i wonder if there is a more elegent way of implimenting my solultion. Using an incrimenter seems like a sloppy way to keep track of where you are.
+# I had one idea for a relatively elegent solution, but can't figure out a major kink: 
+
+# def separate_comma(input)
+	# string = input.to_s.reverse  
+	# (3...string.size).step(4) {|i| string.insert i, ','}  
+	# string.reverse  
+# end  
+
+# It works most of the time, but occasionally screws up around the front of the number. 
 
 #0. Driver Test
 separate_comma(10000000) == '10,000,000'
