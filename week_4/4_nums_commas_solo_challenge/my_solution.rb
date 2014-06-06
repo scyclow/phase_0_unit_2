@@ -36,22 +36,15 @@ end
 
 # 3. Refactored Solution
 
-#same as above, but a bit more readable
 def separate_comma(input)
 	string = input.to_s
-	inc = 0
-	(string.size - 1).downto 0 do |i|
-		if inc == 2 
-			string.insert i, ','
-			inc = 0 
-		else  
-			inc += 1 
-		end
+	i = string.length - 3
+	while i > 0
+		string.insert( i , "," )
+		i -= 3
 	end
-	string[0] = '' if string[0] == ','
 	string
 end
-
 
 
 # 4. Reflection 
@@ -67,6 +60,11 @@ end
 # end  
 
 # It works most of the time, but occasionally screws up around the front of the number. 
+
+# After some thought, I realized that my original approach was kind of stupid. As long as I was using an incrementer, I figured I'd just use a while loop. 
+# At the end of the day, I guess the while loop solution does the trick. It is a free-roaming incrementer, unbound by the length of any object it's modifying. 
+# I guess it's good that I struggled with the refactoring a bit. It helped me rediscover the while loop. 
+# Nevertheless, I think it's somewhat of a syntactical failure on ruby's part that there are no methods to make this straighforward. I haven't found myself saying this very much, but this challenge would have been a lot easier in Python. The Python range() function is much more versatile, allowing for steps and going in reverse order. In addition, its slicing is much more coherent. Stepping through an array is as simple as [::2].
 
 #0. Driver Test
 separate_comma(10000000) == '10,000,000'
