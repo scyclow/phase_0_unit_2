@@ -22,6 +22,7 @@
 
 
 # 2. Initial Solution
+=begin
 def separate_comma(input)
 	string = input.to_s
 	inc=0
@@ -29,17 +30,33 @@ def separate_comma(input)
 	string[0]='' if string[0] == ','
 	string
 end
-
+=end
 
 
 
 # 3. Refactored Solution
 
+#same as above, but a bit more readable
+def separate_comma(input)
+	string = input.to_s
+	inc = 0
+	(string.size - 1).downto 0 do |i|
+		if inc == 2 
+			string.insert i, ','
+			inc = 0 
+		else  
+			inc += 1 
+		end
+	end
+	string[0] = '' if string[0] == ','
+	string
+end
 
 
 
 # 4. Reflection 
-# It really annoys me that ruby does not have a way of iterating through an iterable in steps. I originally tried to iterate in steps using a range to reference the index of the input, but ranges don't go backward.
+# It really annoys me that ruby does not have a way of iterating in steps. I originally tried to iterate in steps using a range, referencing the index of the input, but ranges can't go backward. So, I came up with this stupid idea.
+# In all, this is a pretty straight forward exercise. But, this is the first time I'm really dissapointed with ruby's library. It is sorely lacking a function to step through an iterable. Range#step doesn't cut it.
 
 #0. Driver Test
 separate_comma(10000000) == '10,000,000'
