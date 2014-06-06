@@ -50,17 +50,20 @@ end
 
 # Person 4
 def my_array_deletion_method(source, thing_to_delete)
-  #Your code here!
+	source.delete_if {|i| i.to_s.include? thing_to_delete}
 end
 
 def my_hash_deletion_method(source, thing_to_delete)
-  #Your code here!
+	source.delete_if {|k, v| k == thing_to_delete}
 end
 
 # Identify and describe the ruby method you implemented. 
-# 
-#
-#
+# delete_if iterates through the source, deletes all objects that evaluate to true in the block, and spits out the new source.
+# As with most enumerables, the block takes a key and value if called on a hash.
+# reject accomplishes a similar goal, but is non-destructive (it returns a new array/hash, rather than the existing one), and returns nil if no changes were made.
+# reject! is destructive, but also returns nil if no changes were made.
+# Alternatively, find_all does the opposite of reject; it returns all objects that evaluate to true. 
+
 
 
 ################## DRIVER CODE ###################################
@@ -78,8 +81,8 @@ p my_array_deletion_method(i_want_pets, "a") == ["I", 4, "pets", "but", "I", "on
 p my_hash_deletion_method(my_family_pets_ages, "George") == {"Evi" => 8, "Hoobie" => 5, "Bogart" => 6, "Poly" => 6, "Annabelle" => 2, "Ditto" => 5}
 
 # Reflect!
-# 
-# 
+# This was a good excuse to browse the ruby docs. I came across a couple interesting looking methods while looking for delete_if. 
+# I couldn't find any methods that did 100% of the work, but delete_if does the mheavy lifting. I still had to fudge it a bit by passing it a block containing a method or two. 
 # 
 # 
 # 
