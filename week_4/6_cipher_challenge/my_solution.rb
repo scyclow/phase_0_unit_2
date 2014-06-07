@@ -1,15 +1,14 @@
 # U2.W4: Cipher Challenge
 
 
-# I worked on this challenge with: .
+# I worked on this challenge with: Casey Ryan
 
 
 
 # 1. Solution
 # Write your comments on what each thing is doing. 
 # If you have difficulty, go into IRB and play with the methods.
-
-
+=begin
 
 def north_korean_cipher(coded_message)
   input = coded_message.downcase.split("") # Check out this method in IRB to see how it works! Also refer to the ruby docs.
@@ -65,15 +64,30 @@ def north_korean_cipher(coded_message)
   end
   decoded_sentence = decoded_sentence.join("")
  
-  if decoded_sentence.match(/\d+/) #What is this matching? Look at Rubular for help. 
-    decoded_sentence.gsub!(/\d+/) { |num| num.to_i / 100 } #He's been known to exaggerate...
-  end  
+
   return decoded_sentence # What is this returning?        
 end
 
+=end
+
 # Your Refactored Solution
-
-
+def north_korean_cipher(coded_message)
+  input = coded_message.downcase.split("") 
+  decoded_sentence = []
+  cipher = ("a".."z").to_a
+  input.each do |x| 
+      if cipher.include? x 
+        decoded_sentence << cipher[cipher.index(x) - 4]
+      elsif  %w{@ # $ % & ^ *}.include? x
+        decoded_sentence << " "
+      else
+        decoded_sentence << x
+      end 
+  end
+  decoded_sentence = decoded_sentence.join("")
+  decoded_sentence.gsub!(/\d+/) { |num| num.to_i / 100 } if decoded_sentence.match(/\d+/)
+  decoded_sentence       
+end
 
 
 
@@ -87,4 +101,7 @@ p north_korean_cipher("ribx^wxst:$wsyxl%osvie,$xlir$neter,#xlir%xli%asvph!")
 p north_korean_cipher("ger^wsqifshc*nywx^kix^qi&10000*fekw@sj$gssp%vergl@hsvmxsw?")
 
 # Reflection
- 
+
+#This one was pretty fun. I liked the decyphered messages.
+# Overall, there was some low-hanging fruit in this code, but there were a few refactors that took a bit more figuring out. For example, iterating through a list of letters and selecting a different letter based on its index is not particularly obvious. But, getting rid of the found_match boolean was a no brainer.
+# Pairing on this one was fairly useful. I picked up a couple small tricks. It also helped with debugging. I'm slowly starting to realize that debugging is about 85% of coding, so having a couple pairs of eyes on the problem is always useful. 
