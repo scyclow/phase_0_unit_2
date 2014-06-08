@@ -72,10 +72,9 @@ end
 
 # Your Refactored Solution
 def north_korean_cipher(coded_message)
-  input = coded_message.downcase.split("") 
   decoded_sentence = []
   cipher = ("a".."z").to_a
-  input.each do |x| 
+  coded_message.downcase.each_char do |x| 
       if cipher.include? x 
         decoded_sentence << cipher[cipher.index(x) - 4]
       elsif  %w{@ # $ % & ^ *}.include? x
