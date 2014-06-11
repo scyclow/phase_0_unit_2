@@ -5,11 +5,12 @@
 # EXPLANATION OF require_relative
 #
 #
-require_relative 'state_data'
-
+require_relative 'state_data' # require_relative is a way of requiring a file by entering its file path relative to the current file. 
+                              # The hash sorts data by state, whith each state containing a population density, a population, a region, and a regional spread.
+                              # There is no difference in the hash syntax. The symbol syntax is easier to type, and looks better as a sub-hash, in my opinion.
 class VirusPredictor
 
-  def initialize(state_of_origin, population_density, population, region, regional_spread)
+  def initialize(state_of_origin, population_density, population, region, regional_spread) # initializes the state. Turns the state's data into instance variables, which are accessible throughout the object's methods.
     @state = state_of_origin
     @population = population
     @population_density = population_density
@@ -17,14 +18,15 @@ class VirusPredictor
     @next_region = regional_spread
   end
 
-  def virus_effects  #HINT: What is the SCOPE of instance variables?
+  def virus_effects   #HINT: What is the SCOPE of instance variables?
+                      # calls the predicted_deaths and speed_of_spread methods using the state's instance variables. 
     predicted_deaths(@population_density, @population, @state)
     speed_of_spread(@population_density, @state)
   end
 
   private  #what is this?  what happens if it were cut and pasted above the virus_effects method
-
-  def predicted_deaths(population_density, population, state)
+            # everything below this point is only accessible internally. Other object methods have access to these methods, but they are not accessable to anything outside the object.
+  def predicted_deaths(population_density, population, state) #estimates the number of deathes based on population density
     if @population_density >= 200
       number_of_deaths = (@population * 0.4).floor
     elsif @population_density >= 150
@@ -42,7 +44,7 @@ class VirusPredictor
   end
 
   def speed_of_spread(population_density, state) #in months
-    speed = 0.0
+    speed = 0.0                                   #estimates the speed of the spreading disease based on population density.
 
     if @population_density >= 200
       speed += 0.5
@@ -60,6 +62,12 @@ class VirusPredictor
 
   end
 
+end
+
+def all_states(data)
+  data.each { |state|
+    VirusPredictor.new().virus_effects
+  }
 end
 
 #=======================================================================
