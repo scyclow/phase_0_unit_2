@@ -181,3 +181,5 @@ assert_open_closed drawer, false
 # I'm a little confused about the directions here. The reason I'm getting the last error message (when fork is defined the second time in the driver code) is because it's asking to remove an item that is not in the drawer. Hence, fork is set to nil insted of a Silverware object.
 # My work-around is to just create a new silverware object called "hands". 
 # Testing some of the object functionality was also kind of tedious. But, I guess it gave me some good practice writing tests for different methods.
+
+
